@@ -7,6 +7,7 @@ import { FormControl, FormControlLabel, FormLabel, makeStyles } from '@material-
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
 	field: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
 
 export default function Create() {
 	const classes = useStyles();
-
+	const history = useHistory();
 	const [title, setTitle] = useState('');
 	const [note, setNote] = useState('');
 	const [titleError, setTitleError] = useState(false);
@@ -38,7 +39,12 @@ export default function Create() {
 		}
 
 		if(title && note){
-			console.log(title, note, category);
+			fetch('http://localhost:3002/notes', {
+				method: 'POST',
+				headers: {"Content-type" : "application/json"},
+				body: JSON.stringify({ title, note, category })
+			})
+				.then(() => history.push('/'))
 		}
 	};
 
