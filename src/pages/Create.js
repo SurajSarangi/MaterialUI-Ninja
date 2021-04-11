@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import SendIcon from '@material-ui/icons/Send';
-import { makeStyles } from '@material-ui/core';
+import { FormControl, FormControlLabel, FormLabel, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import { useState } from 'react';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 const useStyles = makeStyles({
 	field: {
@@ -21,6 +23,7 @@ export default function Create() {
 	const [note, setNote] = useState('');
 	const [titleError, setTitleError] = useState(false);
 	const [noteError, setNoteError] = useState(false);
+	const [category, setCategory] = useState('valorant');
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -35,9 +38,9 @@ export default function Create() {
 		}
 
 		if(title && note){
-			console.log(title, note);
+			console.log(title, note, category);
 		}
-	}
+	};
 
 	return (
 		<Container>
@@ -71,6 +74,16 @@ export default function Create() {
 					required
 					error={noteError}
 				/>
+
+				<FormControl className={classes.field}>
+					<FormLabel>Category</FormLabel>
+					<RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+						<FormControlLabel value="web development" control={<Radio />} label="Web Development" />
+						<FormControlLabel value="machine learning" control={<Radio />} label="ML/AI" />
+						<FormControlLabel value="valorant" control={<Radio />} label="Valorant" />
+						<FormControlLabel value="fifa" control={<Radio />} label="Fifa 19" />
+					</RadioGroup>
+				</FormControl>
 
 				<Button 
 					variant="contained"
