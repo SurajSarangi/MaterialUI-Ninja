@@ -1,4 +1,4 @@
-import { Drawer, List, ListItemText, ListItem, ListItemIcon, makeStyles, Typography } from "@material-ui/core";
+import { Drawer, List, ListItemText, ListItem, ListItemIcon, makeStyles, Typography, AppBar, Toolbar } from "@material-ui/core";
 import { AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons'
 import { useHistory, useLocation } from "react-router";
 
@@ -26,6 +26,15 @@ const useStyles = makeStyles((theme) => {
         },
         title: {
             padding: theme.spacing(2)
+        },
+        appbar: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            marginLeft: drawerWidth,
+            background: '#434343',
+            color: '#76ff03'
+        },
+        toolbar: {
+
         }
     }
 });
@@ -40,7 +49,7 @@ const menuItems = [
         text: 'Create New Note',
         icon: <AddCircleOutlineOutlined color="secondary" />,
         path: '/create'
-    },
+    }
 ];
 
 const Layout = ({ children }) => {
@@ -51,6 +60,17 @@ const Layout = ({ children }) => {
 
     return ( 
         <div className={classes.root}>
+
+            <AppBar
+                className={classes.appbar}
+            >
+                <Toolbar>
+                    <Typography>
+                        Hello, welcome to Zennin Notes
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+
             <Drawer
                 className={classes.drawer}
                 variant='permanent'
@@ -86,6 +106,7 @@ const Layout = ({ children }) => {
             </Drawer>
 
             <div className={classes.page}>
+                <div className={classes.toolbar}></div>
                 { children }
             </div>
         </div>
