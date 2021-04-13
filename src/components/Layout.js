@@ -1,6 +1,7 @@
 import { Drawer, List, ListItemText, ListItem, ListItemIcon, makeStyles, Typography, AppBar, Toolbar } from "@material-ui/core";
 import { AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons'
 import { useHistory, useLocation } from "react-router";
+import { format } from 'date-fns';
 
 const drawerWidth = 240;
 
@@ -30,11 +31,12 @@ const useStyles = makeStyles((theme) => {
         appbar: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
-            background: '#434343',
-            color: '#76ff03'
+            background: '#f9f9f9',
+            color: '#434343'
         },
-        toolbar: {
-
+        toolbar: theme.mixins.toolbar,
+        date: {
+            flexGrow:1
         }
     }
 });
@@ -63,10 +65,15 @@ const Layout = ({ children }) => {
 
             <AppBar
                 className={classes.appbar}
+                elevation={0}
             >
                 <Toolbar>
+                    <Typography className={classes.date}>
+                        Today is { format(new Date(), 'do MMMM Y') }
+                    </Typography>
+
                     <Typography>
-                        Hello, welcome to Zennin Notes
+                        Megumi
                     </Typography>
                 </Toolbar>
             </AppBar>
