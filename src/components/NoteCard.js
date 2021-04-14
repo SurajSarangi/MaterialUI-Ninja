@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
-import { makeStyles } from '@material-ui/core';
+import { Avatar, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     outline: {
@@ -19,6 +19,22 @@ const useStyles = makeStyles({
                 return '1px solid #311b92'
             }
         }
+    },
+    avatar: {
+        background: (note) => {
+            if(note.category === "web development") {
+                return 'red'
+            } else if(note.category === "machine learning") {
+                return '#64ffda'
+            } else if(note.category === "valorant") {
+                return '#d4e157'
+            } else {
+                return '#311b92'
+            }
+        }
+    },
+    heading: {
+        fontFamily : 'Lobster'
     }
 })
 
@@ -30,12 +46,21 @@ const NoteCard = ({ element, handleDelete }) => {
         <div>
             <Card elevation={1} className={classes.outline}>
                 <CardHeader 
+                    avatar = {
+                        <Avatar className={classes.avatar}>
+                            { element.category[0].toUpperCase() }
+                        </Avatar>
+                    }
                     action = {
                         <IconButton onClick={() => handleDelete(element.id)}>
                             <DeleteOutlined />
                         </IconButton>
                     }
-                    title = { element.title }
+                    title = {
+                        <Typography variant="subtitle1" className={classes.heading}>
+                            { element.title }
+                        </Typography>
+                    }
                     subheader = { element.category }
                 />
 

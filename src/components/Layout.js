@@ -1,4 +1,4 @@
-import { Drawer, List, ListItemText, ListItem, ListItemIcon, makeStyles, Typography, AppBar, Toolbar } from "@material-ui/core";
+import { Drawer, List, ListItemText, ListItem, ListItemIcon, makeStyles, Typography, AppBar, Toolbar, Avatar } from "@material-ui/core";
 import { AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons'
 import { useHistory, useLocation } from "react-router";
 import { format } from 'date-fns';
@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme) => {
         toolbar: theme.mixins.toolbar,
         date: {
             flexGrow:1
+        },
+        avatar: {
+            padding: theme.spacing(2)
+        },
+        user: {
+            fontFamily: 'Lobster'
         }
     }
 });
@@ -72,9 +78,10 @@ const Layout = ({ children }) => {
                         Today is { format(new Date(), 'do MMMM Y') }
                     </Typography>
 
-                    <Typography>
+                    <Typography className={classes.user}>
                         Megumi
                     </Typography>
+                    <Avatar src="megumi.jpg" className={classes.avatar}/>
                 </Toolbar>
             </AppBar>
 
@@ -107,13 +114,12 @@ const Layout = ({ children }) => {
                             />
                         </ListItem>
                     ))}
-
                 </List>
 
             </Drawer>
 
             <div className={classes.page}>
-                <div className={classes.toolbar}></div>
+                <div className={classes.toolbar} />
                 { children }
             </div>
         </div>
