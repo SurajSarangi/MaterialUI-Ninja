@@ -74,7 +74,7 @@ const Layout = ({ children }) => {
                 elevation={0}
             >
                 <Toolbar>
-                    <Typography className={classes.date}>
+                    <Typography className={classes.date} variant="h6">
                         Today is { format(new Date(), 'do MMMM Y') }
                     </Typography>
 
