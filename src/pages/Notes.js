@@ -14,13 +14,13 @@ export default function Notes() {
 	};
 
 	useEffect(() => {
-		getfetch('http://localhost:3002/notes')
+		getfetch('https://zennin-server.herokuapp.com/notes')
 			.then(result => setNotes(result))
 			.catch(err => console.log(err));
 	}, []);
 
 	const handleDelete = async(id) => {
-		await fetch(`http://localhost:3002/notes/${id}`, {
+		await fetch(`https://zennin-server.herokuapp.com/notes/${id}`, {
 			method: 'DELETE'
 		});
 
