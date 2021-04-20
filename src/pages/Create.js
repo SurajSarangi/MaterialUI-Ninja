@@ -39,7 +39,7 @@ export default function Create() {
 		}
 
 		if(title && note){
-			fetch('http://localhost:3002/notes', {
+			fetch('https://zennin-server.herokuapp.com/notes', {
 				method: 'POST',
 				headers: {"Content-type" : "application/json"},
 				body: JSON.stringify({ title, note, category })
